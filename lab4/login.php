@@ -1,13 +1,13 @@
 <?php
   // use and complete the sample structure below to build your login functionality
-  /*
+    /*
     include_once(__DIR__ . "/classes/User.php");
     $user = new User();
-    $user->setEmail("something here");
+    $user->setEmail($_POST["email"]);
     if($user->canLogin()){
       session_start();
     }
-  */
+    */
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -23,7 +23,7 @@
 
 <div class="alert alert-danger">Sorry, we couldn't log you in. Of course we need to hide this message by default.</div>
 
-<form>
+<form action="/login.php" method="POST"></form>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
