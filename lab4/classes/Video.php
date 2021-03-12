@@ -14,6 +14,15 @@
 
         public static function getAllByUserId(int $id) {
             // only grab the videos for a certain user
+            $conn = \Db::getInstance();
+            $result = $conn->query("select * from videos where user_id = $id;");
+            return $result->fetchAll();
+        }
+        public static function getAllById(int $id) {
+            // only grab the videos for a certain user
+            $conn = \Db::getInstance();
+            $result = $conn->query("select * from videos where id = $id;");
+            return $result->fetchAll();
         }
 
     }

@@ -42,7 +42,7 @@ class User
     public function setPassword($password)
     {
         if (strlen($password) < 5) {
-            throw new Exception("Passwords must be longer than 5 characters.");
+            $error = "Passwords must be longer than 5 characters.";
         }
 
         $this->password = $password;
@@ -51,10 +51,9 @@ class User
 
     public function canLogin()
     {
-        /*
+        //this function should check if a user can login with the password and user provided
         $email = $this->getEmail();
         $password = $this->getPassword();
-        //this function should check if a user can login with the password and user provided
         $conn = Db::getInstance();
         $statement = $conn->prepare("SELECT * FROM users WHERE email = :email");
         $statement->bindValue(":email", $email);
@@ -73,7 +72,6 @@ class User
         } else {
             return false;
         }
-        */
     }
 
     public function register()
