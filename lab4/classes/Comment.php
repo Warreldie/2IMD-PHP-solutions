@@ -53,4 +53,11 @@ class Comment
                 $statement->bindValue(':comment', $this->getComment());
                 return $statement->execute();
         }
+        public function getComments()
+        {
+                $conn = Db::getInstance();
+                $result = $conn->query("select email, comment from comments;");
+                return $result->fetchAll();
+        }
+
 }

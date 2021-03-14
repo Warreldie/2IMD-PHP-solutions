@@ -9,8 +9,9 @@ include_once(__DIR__ . "/classes/Comment.php");
 // try to understand the used methods in order to build your own code
 Security::onlyLoggedInUsers();
 $videos = Video::getAllById($_GET["id"]);
+$comment = new Comment();
+$comments = $comment->getComments();
 if(!empty($_POST)){
-    $comment = new Comment();
     $comment->setComment($_POST["comment"]);
     $comment->setEmail($_SESSION["user"]);
     $comment->addComment();
@@ -45,7 +46,6 @@ if(!empty($_POST)){
                     <a href="feed.php?filteruser=2">Pokémon Journeys</a>
                 <?php endif; ?>
             <?php endforeach; ?>
-            <?php //foreach($comments as $comment): ?>
                 <form method="post" action="">
                     <div class="form-group">
                         <label for="comment">Comment</label>
@@ -53,11 +53,11 @@ if(!empty($_POST)){
                         <input type="submit" class="btn btn-primary" value="Comment">
                     </div>
                 </form>
-
+            <?php foreach($comments as $comment): ?>
                 <ul> 
-                    <li><strong>email</strong><?php //echo $comment ?></li>
+                    <li><strong><?php echo $comment["email"] ?> - </strong><?php echo $comment["comment"] ?></li>
                 </ul>
-            <?php //endforeach; ?>
+            <?php endforeach; ?>
             </article>
     </main>
 
