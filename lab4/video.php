@@ -3,14 +3,17 @@
 // there should be NO sql queries here in this page
 include_once(__DIR__ . "/helpers/Security.php");
 include_once(__DIR__ . "/classes/Video.php");
+include_once(__DIR__ . "/classes/Comment.php");
 
 // here's a bit of sample code to get your started
 // try to understand the used methods in order to build your own code
 Security::onlyLoggedInUsers();
 $videos = Video::getAllById($_GET["id"]);
 if(!empty($_POST)){
-    $comment = new Comment;
+    $comment = new Comment();
     $comment->setComment($_POST["comment"]);
+    $comment->setEmail($_SESSION["user"]);
+    $comment->addComment();
 }
 ?>
 <!DOCTYPE html>
